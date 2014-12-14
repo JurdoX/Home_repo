@@ -1,1 +1,3 @@
-add a new note
+window -> preferences -> network -> ssh
+	-> key management -> generate rsa
+	-> add key to github
