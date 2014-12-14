@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.sql.DataSource;
 
 /**
+ *
+ * Database
  * 
  * @author JurdoX
  *
