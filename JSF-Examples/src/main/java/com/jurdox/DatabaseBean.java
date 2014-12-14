@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import javax.sql.DataSource;
 
+/**
+ * 
+ * @author JurdoX
+ *
+ */
 public class DatabaseBean implements Serializable {
 
 	
