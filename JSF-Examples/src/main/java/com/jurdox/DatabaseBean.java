@@ -5,9 +5,8 @@ import java.io.Serializable;
 import javax.sql.DataSource;
 
 /**
- * Database connection
- * @author JurdoX
  * 
+ * @author JurdoX
  *
  */
 public class DatabaseBean implements Serializable {
