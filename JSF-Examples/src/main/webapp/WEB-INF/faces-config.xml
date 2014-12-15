@@ -16,7 +16,11 @@
 	<application>
 		<resource-bundle>
 			<base-name>com.jurdox.properties.label</base-name>
-			<var>lb</var>
+			<var>lbl</var>
+		</resource-bundle>
+		<resource-bundle>
+		<base-name>com.jurdox.properties.message</base-name>
+		<var>msg</var>
 		</resource-bundle>
 	</application>
 </faces-config>
