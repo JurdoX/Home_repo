@@ -4,18 +4,9 @@ import java.util.Date;
 
 public class Person {
 
-	private int idPerson;
 	private String name;
 	private String address;
 	private Date createdDate;
-
-	public int getIdPerson() {
-		return idPerson;
-	}
-
-	public void setIdPerson(int idPerson) {
-		this.idPerson = idPerson;
-	}
 
 	public String getName() {
 		return name;
