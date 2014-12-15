@@ -4,9 +4,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputScript name="testScript.js" library="js" />
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputLabel id="firstNameOutput" value="#{lbl['person.firstname']}" />
+		<h:inputText id="firstNameInput" value="#{person.firstName}"
+			required="true" requiredMessage="#{msg['person.firstname.required']}"
+			validatorMessage="#{msg['person.firstname.invalid']}"
+			onblur="popUpBlur()">
+			<f:validateRegex pattern="^[a-zA-Z\s]+$" />
+		</h:inputText>
+		<h:message for="firstNameInput" style="color:red" />
+		<br />
 
-<body>
-	<h:outputLabel id="namePerson" value="#{lb['person.name']}"/>
-</body>
+		<h:outputLabel id="lastName" value="#{lbl['person.lastname']}" />
+		<h:inputText id="lastNameInput" value="#{person.lastName}"
+			required="true" requiredMessage="#{msg['person.lastname.required']}"
+			validatorMessage="#{msg['person.lastname.invalid']}">
+			<f:validateRegex pattern="^[a-zA-Z\s]+$" />
+		</h:inputText>
+		<h:message for="lastNameInput" style="color:red" />
+		<br />
+
+		<h:outputLabel id="genderOutput" value="#{lbl['person.gender']}" />
+		<h:message for="genderInput" style="color:red" />
+		<h:selectOneRadio id="genderInput" value="#{person.gender}"
+			required="true" requiredMessage="#{msg['person.gender.required']}">
+			<f:selectItem id="genderItem1" itemLabel="Male" itemValue="Male" />
+			<f:selectItem id="genderItem2" itemLabel="Female" itemValue="Female" />
+		</h:selectOneRadio>
+
+		<h:outputLabel id="ageOutput" value="#{lbl['person.age']}" />
+		<h:inputText id="ageInput" value="#{person.age}" required="true"
+			requiredMessage="#{msg['person.age.required']}" maxlength="2"
+			validatorMessage="#{msg['person.age.invalid']}">
+			<f:validateLongRange minimum="18" />
+		</h:inputText>
+		<h:message for="ageInput" style="color:red" />
+		<br />
+		<br />
+
+		<h:commandButton id="RegistationButton" value="Registrate"
+			action="#{person.print}" />
+	</h:form>
+</h:body>
 
 </html>
