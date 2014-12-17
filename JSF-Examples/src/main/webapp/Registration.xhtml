@@ -35,9 +35,15 @@
 			<f:selectItem id="genderItem1" itemLabel="Male" itemValue="Male" />
 			<f:selectItem id="genderItem2" itemLabel="Female" itemValue="Female" />
 		</h:selectOneRadio>
-		
+		<br />
+
 		<h:outputLabel id="stateOutput" value="#{lbl['person.state']}" />
-		
+		<h:selectOneMenu id="stateInput" value="#{person.state}"
+			required="true" requiredMessage="#{msg['person.state.required']}">
+			<f:selectItem itemLabel="Please choose" value="" />
+			<f:selectItem itemLabel="Slovakia" value="SK" />
+			<f:selectItem itemLabel="Czech republic" value="CR" />
+		</h:selectOneMenu>
 
 		<h:outputLabel id="ageOutput" value="#{lbl['person.age']}" />
 		<h:inputText id="ageInput" value="#{person.age}" required="true"
