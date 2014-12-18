@@ -1,11 +1,16 @@
 package com.jurdox;
 
+import org.apache.log4j.Logger;
+
 public class Person {
+
+	private Logger log = Logger.getLogger(Person.class);
 
 	private String firstName;
 	private String lastName;
 	private String gender;
 	private String state;
+	private String note;
 	private Integer age;
 
 	public String getFirstName() {
@@ -40,6 +45,14 @@ public class Person {
 		this.state = state;
 	}
 
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 	public Integer getAge() {
 		return age;
 	}
@@ -49,11 +62,15 @@ public class Person {
 	}
 
 	public String print() {
+
+		log.debug("Start logging");
+
 		System.out.println("Name: " + getFirstName());
 		System.out.println("Surname: " + getLastName());
 		System.out.println("Gender: " + getGender());
 		System.out.println("State: " + getState());
 		System.out.println("Age: " + getAge());
+		System.out.println("Note: " + getNote());
 
 		return null;
 	}
