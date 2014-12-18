@@ -1,33 +1,35 @@
-package com.jurdox;
-
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
-/**
- * Unit test for simple App.
- */
-public class Test extends TestCase {
-	/**
-	 * Create the test case
-	 * 
-	 * @param testName
-	 *            name of the test case
-	 */
-	public Test(String testName) {
-		super(testName);
-	}
-
-	/**
-	 * @return the suite of tests being tested
-	 */
-	public static TestSuite suite() {
-		return new TestSuite(Test.class);
-	}
-
-	/**
-	 * Rigourous Test :-)
-	 */
-	public void testApp() {
-		assertTrue(true);
-	}
-}
+//package com.jurdox;
+//
+//import org.apache.log4j.Logger;
+//
+//public class Test {
+//
+//	final static Logger logger = Logger.getLogger(Test.class);
+//
+//	@Before
+//	public void setUp() {
+//		logger.info("Before every test !");
+//	}
+//
+//	@After
+//	public void tearDown() {
+//		logger.info("After every test !");
+//	}
+//
+//	@BeforeClass
+//	public static void setupOnce() {
+//		logger.info("Before class !");
+//	}
+//
+//	@AfterClass
+//	public static void shutDown() {
+//		logger.info("After class !");
+//	}
+//
+//	@Test
+//	public void testExample() {
+//		logger.info("starting test !");
+//		logger.info("this is empty test !");
+//	}
+//
+//}

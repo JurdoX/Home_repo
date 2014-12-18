@@ -40,10 +40,13 @@
 		<h:outputLabel id="stateOutput" value="#{lbl['person.state']}" />
 		<h:selectOneMenu id="stateInput" value="#{person.state}"
 			required="true" requiredMessage="#{msg['person.state.required']}">
-			<!--f:selectItem itemLabel="Please choose" value="" />
-			<f:selectItem itemLabel="Slovakia" value="SK" />
-			<f:selectItem itemLabel="Czech republic" value="CR" /-->
+			<f:selectItem itemLabel="Please choose" itemValue="" />
+			<f:selectItem itemLabel="Slovakia" itemValue="SK" />
+			<f:selectItem itemLabel="Czech republic" itemValue="CR" />
 		</h:selectOneMenu>
+		<h:message for="stateInput" style="color:red" />
+		<br />
+		<br />
 
 		<h:outputLabel id="ageOutput" value="#{lbl['person.age']}" />
 		<h:inputText id="ageInput" value="#{person.age}" required="true"
@@ -53,6 +56,11 @@
 		</h:inputText>
 		<h:message for="ageInput" style="color:red" />
 		<br />
+		<br />
+
+		<h:outputLabel id="noteOutput" value="#{lbl['person.note']}" />
+		<h:inputTextarea id="noteInput" value="#{person.note}" required="true"
+			requiredMessage="#{msg['person.note.required']}" rows="5" cols="25" />
 		<br />
 
 		<h:commandButton id="RegistationButton" value="Registrate"
