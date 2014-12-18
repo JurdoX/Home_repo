@@ -7,7 +7,7 @@ public class Person {
 	private String gender;
 	private String state;
 	private Integer age;
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -31,7 +31,7 @@ public class Person {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
+
 	public String getState() {
 		return state;
 	}
@@ -54,7 +54,7 @@ public class Person {
 		System.out.println("Gender: " + getGender());
 		System.out.println("State: " + getState());
 		System.out.println("Age: " + getAge());
-		
+
 		return null;
 	}
 }
