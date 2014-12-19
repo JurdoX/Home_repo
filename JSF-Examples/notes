@@ -1,3 +1,5 @@
 window -> preferences -> network -> ssh
 	-> key management -> generate rsa
 	-> add key to github
+
+http://www.vogella.com/tutorials/EclipseDataToolsPlatform/article.html
