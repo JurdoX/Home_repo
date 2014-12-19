@@ -61,6 +61,7 @@
 		<h:outputLabel id="noteOutput" value="#{lbl['person.note']}" />
 		<h:inputTextarea id="noteInput" value="#{person.note}" required="true"
 			requiredMessage="#{msg['person.note.required']}" rows="5" cols="25" />
+		<h:message for="noteInput" style="color:red" />
 		<br />
 
 		<h:commandButton id="RegistationButton" value="Registrate"
