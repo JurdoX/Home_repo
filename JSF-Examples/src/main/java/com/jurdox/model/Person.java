@@ -1,4 +1,4 @@
-package com.jurdox;
+package com.jurdox.model;
 
 import org.apache.log4j.Logger;
 

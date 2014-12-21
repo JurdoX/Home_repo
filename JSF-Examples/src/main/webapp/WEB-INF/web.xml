@@ -33,7 +33,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<!-- faces-config -->
+	<!-- Faces-config -->
 	<context-param>
 		<param-name>javax.faces.CONFIG_FILES</param-name>
 		<param-value>WEB-INF/manage-beans.xml</param-value>

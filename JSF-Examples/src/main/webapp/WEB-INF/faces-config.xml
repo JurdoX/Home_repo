@@ -7,7 +7,7 @@
 
 	<managed-bean>
 		<managed-bean-name>person</managed-bean-name>
-		<managed-bean-class>com.jurdox.Person</managed-bean-class>
+		<managed-bean-class>com.jurdox.model.Person</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
