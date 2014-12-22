@@ -10,7 +10,7 @@
 <h:body>
 	<h:form>
 		<h:outputLabel id="firstNameOutput" value="#{lbl['person.firstname']}" />
-		<h:inputText id="firstNameInput" value="#{person.firstName}"
+		<h:inputText id="firstNameInput" value="#{registrationperson.firstName}"
 			required="true" requiredMessage="#{msg['person.firstname.required']}"
 			validatorMessage="#{msg['person.firstname.invalid']}"
 			onblur="popUpBlur()">
@@ -20,7 +20,7 @@
 		<br />
 
 		<h:outputLabel id="lastName" value="#{lbl['person.lastname']}" />
-		<h:inputText id="lastNameInput" value="#{person.lastName}"
+		<h:inputText id="lastNameInput" value="#{registrationperson.lastName}"
 			required="true" requiredMessage="#{msg['person.lastname.required']}"
 			validatorMessage="#{msg['person.lastname.invalid']}">
 			<f:validateRegex pattern="^[a-zA-Z\s]+$" />
@@ -30,7 +30,7 @@
 
 		<h:outputLabel id="genderOutput" value="#{lbl['person.gender']}" />
 		<h:message for="genderInput" style="color:red" />
-		<h:selectOneRadio id="genderInput" value="#{person.gender}"
+		<h:selectOneRadio id="genderInput" value="#{registrationperson.gender}"
 			required="true" requiredMessage="#{msg['person.gender.required']}">
 			<f:selectItem id="genderItem1" itemLabel="Male" itemValue="Male" />
 			<f:selectItem id="genderItem2" itemLabel="Female" itemValue="Female" />
@@ -38,7 +38,7 @@
 		<br />
 
 		<h:outputLabel id="stateOutput" value="#{lbl['person.state']}" />
-		<h:selectOneMenu id="stateInput" value="#{person.state}"
+		<h:selectOneMenu id="stateInput" value="#{registrationperson.state}"
 			required="true" requiredMessage="#{msg['person.state.required']}">
 			<f:selectItem itemLabel="Please choose" itemValue="" />
 			<f:selectItem itemLabel="Slovakia" itemValue="SK" />
@@ -49,7 +49,7 @@
 		<br />
 
 		<h:outputLabel id="ageOutput" value="#{lbl['person.age']}" />
-		<h:inputText id="ageInput" value="#{person.age}" required="true"
+		<h:inputText id="ageInput" value="#{registrationperson.age}" required="true"
 			requiredMessage="#{msg['person.age.required']}" maxlength="2"
 			validatorMessage="#{msg['person.age.invalid']}">
 			<f:validateLongRange minimum="18" />
@@ -59,13 +59,13 @@
 		<br />
 
 		<h:outputLabel id="noteOutput" value="#{lbl['person.note']}" />
-		<h:inputTextarea id="noteInput" value="#{person.note}" required="true"
+		<h:inputTextarea id="noteInput" value="#{registrationperson.note}" required="true"
 			requiredMessage="#{msg['person.note.required']}" rows="5" cols="25" />
 		<h:message for="noteInput" style="color:red" />
 		<br />
 
 		<h:commandButton id="RegistationButton" value="Registrate"
-			action="#{person.print}" />
+			action="#{registrationperson.registratePerson}" />
 	</h:form>
 </h:body>
 

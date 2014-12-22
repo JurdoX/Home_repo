@@ -1,4 +1,4 @@
-package com.jurdox.utility;
+package com.jurdox.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

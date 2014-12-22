@@ -1,39 +1,24 @@
-package com.jurdox.model;
+package com.jurdox.beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.faces.bean.ManagedBean;
 
-@Entity
-@Table(name = "Registrated_Persons")
-public class Person {
+import org.apache.log4j.Logger;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "PERSON_ID")
-	private Integer personId;
-	@Column(name = "FIRSTNAME")
+import com.jurdox.dao.RegistrationPersonDAO;
+import com.jurdox.dao.RegistrationPersonImpl;
+import com.jurdox.model.Person;
+
+@ManagedBean(name = "registrationperson")
+public class RegistrationPerson {
+
+	public static final Logger log = Logger.getLogger("Registration:");
+	
 	private String firstName;
-	@Column(name = "LASTNAME")
 	private String lastName;
-	@Column(name = "GENDER")
 	private String gender;
-	@Column(name = "STATE")
 	private String state;
-	@Column(name = "NOTE")
 	private String note;
-	@Column(name = "AGE")
 	private Integer age;
-
-	public Integer getPersonId() {
-		return personId;
-	}
-
-	public void setPersonId(Integer personId) {
-		this.personId = personId;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -81,6 +66,21 @@ public class Person {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public String registratePerson() {
+		RegistrationPersonDAO addPerson = new RegistrationPersonImpl();
+		Person person = new Person();
+		person.setAge(getAge());
+		person.setFirstName(getFirstName());
+		person.setLastName(getLastName());
+		person.setGender(getGender());
+		person.setNote(getNote());
+		person.setState(getState());
+		boolean result = addPerson.registratePerson(person);
+		log.debug("Succes: " + result);
+		
+		return "person added";
 	}
 
 }
