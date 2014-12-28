@@ -1,18 +1,15 @@
 package com.jurdox.beans;
 
-import javax.faces.bean.ManagedBean;
-
 import org.apache.log4j.Logger;
 
 import com.jurdox.dao.RegistrationPersonDAO;
 import com.jurdox.dao.RegistrationPersonImpl;
 import com.jurdox.model.Person;
 
-@ManagedBean(name = "registrationperson")
 public class RegistrationPerson {
 
 	public static final Logger log = Logger.getLogger("Registration:");
-	
+
 	private String firstName;
 	private String lastName;
 	private String gender;
@@ -79,7 +76,7 @@ public class RegistrationPerson {
 		person.setState(getState());
 		boolean result = addPerson.registratePerson(person);
 		log.debug("Succes: " + result);
-		
+
 		return "person added";
 	}
 
