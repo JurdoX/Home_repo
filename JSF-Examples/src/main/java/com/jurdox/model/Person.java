@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Registrated_Persons")
 public class Person {
-
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "PERSON_ID")
@@ -26,6 +26,19 @@ public class Person {
 	private String note;
 	@Column(name = "AGE")
 	private Integer age;
+
+	public Person() {
+	}
+	
+	public Person(String firstName, String lastName, String gender,
+			String state, String note, Integer age) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.state = state;
+		this.note = note;
+		this.age = age;
+	}
 
 	public Integer getPersonId() {
 		return personId;

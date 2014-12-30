@@ -5,10 +5,42 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
+	<h:outputStylesheet name="registration-style.css" library="css" />
 	<h:outputScript name="testScript.js" library="js" />
 </h:head>
 <h:body>
 	<h:form>
+		<h:dataTable id="personsTable" value="#{person.personsList}" var="p"
+			styleClass="table" headerClass="table-header"
+			rowClasses="table-odd-row, table-even-row">
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				#{p.firstName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Surname</f:facet>
+				#{p.lastName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Gender</f:facet>
+				#{p.gender}
+			</h:column>
+			<h:column>
+				<f:facet name="header">State</f:facet>
+				#{p.state}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Age</f:facet>
+				#{p.age}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Note</f:facet>
+				#{p.note}
+			</h:column>
+		</h:dataTable>
+		<br />
+		<br />
+
 		<h:outputLabel id="firstNameOutput" value="#{lbl['person.firstname']}" />
 		<h:inputText id="firstNameInput" value="#{person.firstName}"
 			required="true" requiredMessage="#{msg['person.firstname.required']}"
@@ -66,6 +98,8 @@
 
 		<h:commandButton id="RegistationButton" value="Registrate"
 			action="#{person.registratePerson}" />
+
+
 	</h:form>
 </h:body>
 
