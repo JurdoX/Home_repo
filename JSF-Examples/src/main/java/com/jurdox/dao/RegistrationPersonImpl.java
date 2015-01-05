@@ -45,13 +45,42 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 	}
 
 	public boolean editPerson(Person person) {
-		// TODO Auto-generated method stub
-		return false;
+
+		boolean success = false;
+
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.update(person);
+			session.getTransaction().commit();
+			session.close();
+
+			success = true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+
+		return success;
+
 	}
 
 	public boolean deletePerson(Person person) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean success = false;
+
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.delete(person);
+			session.getTransaction().commit();
+			session.close();
+
+			success = true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+
+		return success;
 	}
 
 }

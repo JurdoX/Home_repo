@@ -1,7 +1,11 @@
 package com.jurdox.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 
@@ -9,20 +13,38 @@ import com.jurdox.dao.OperationWithPersonDAO;
 import com.jurdox.dao.RegistrationPersonImpl;
 import com.jurdox.model.Person;
 
-public class RegistrationPerson {
+@ManagedBean(name = "person")
+@SessionScoped
+public class RegistrationPerson implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public static final Logger log = Logger.getLogger("Registration:");
 
+	private String personId;
 	private String firstName;
 	private String lastName;
 	private String gender;
 	private String state;
 	private String note;
 	private Integer age;
+
 	private List<Person> personsList = new ArrayList<Person>();
+//	private List<Person> helpList = new ArrayList<Person>();
 
 	public RegistrationPerson() {
-		infoPerson();
+//		infoPerson();
+		personsList.add(new Person("aa", "aa", "aa", "dd", "dd", 77));
+		personsList.add(new Person("aa", "aa", "aa", "ddw", "dsd", 57));
+		personsList.add(new Person("aa", "aa", "aa", "dds", "ddf", 47));
+	}
+
+	public String getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(String personId) {
+		this.personId = personId;
 	}
 
 	public String getFirstName() {
@@ -89,9 +111,9 @@ public class RegistrationPerson {
 		setNote(null);
 		setState(null);
 	}
-	
+
 	OperationWithPersonDAO operation = new RegistrationPersonImpl();
-	
+
 	public String registratePerson() {
 		Person person = new Person();
 		person.setAge(getAge());
@@ -105,9 +127,32 @@ public class RegistrationPerson {
 		log.debug("Succes: " + result);
 		setEmptyFields();
 
-		return "person added";
+		return null;
 	}
 
+	public String editPerson(Person person) {
+		person.setEditable(true);
+		return null;
+	}
+
+	public String saveChangedPerson() {
+		for (Person p : personsList) {
+//			if (p.isEditable()) {
+				p.setEditable(false);
+//				operation.editPerson(p);
+//			}
+		}
+
+		return null;
+	}
+
+	public String deletePerson(Person person) {
+		personsList.remove(person);
+		operation.deletePerson(person);
+		return null;
+	}
+
+	
 	public String infoPerson() {
 		for (Person p : operation.infoAboutPerson(personsList)) {
 			Person person = new Person();
@@ -116,11 +161,12 @@ public class RegistrationPerson {
 			person.setLastName(p.getLastName());
 			person.setGender(p.getGender());
 			person.setNote(p.getNote());
+			person.setPersonId(p.getPersonId());
 			person.setState(p.getState());
 			personsList.add(person);
 		}
 
-		return "info about person";
+		return null;
 	}
 
 }

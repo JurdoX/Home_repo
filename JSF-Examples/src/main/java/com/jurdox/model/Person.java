@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Registrated_Persons")
 public class Person {
-	
+
 	@Id
 	@GeneratedValue
 	@Column(name = "PERSON_ID")
@@ -27,9 +27,11 @@ public class Person {
 	@Column(name = "AGE")
 	private Integer age;
 
+	private transient boolean editable;
+
 	public Person() {
 	}
-	
+
 	public Person(String firstName, String lastName, String gender,
 			String state, String note, Integer age) {
 		this.firstName = firstName;
@@ -94,6 +96,14 @@ public class Person {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 }

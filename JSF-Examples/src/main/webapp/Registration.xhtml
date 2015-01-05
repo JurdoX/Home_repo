@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
@@ -10,34 +10,59 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:dataTable id="personsTable" value="#{person.personsList}" var="p"
+		<h:dataTable value="#{person.personsList}" var="p"
 			styleClass="table" headerClass="table-header"
 			rowClasses="table-odd-row, table-even-row">
 			<h:column>
+				<f:facet name="header">ID</f:facet>
+				#{p.personId}
+			</h:column>
+			<h:column>
 				<f:facet name="header">Name</f:facet>
-				#{p.firstName}
+				<h:inputText value="#{p.firstName}" size="10"
+					rendered="#{p.editable}" />
+				<h:outputText value="#{p.firstName}" rendered="#{not p.editable}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Surname</f:facet>
-				#{p.lastName}
+				<h:inputText value="#{p.lastName}" size="10"
+					rendered="#{p.editable}" />
+				<h:outputText value="#{p.lastName}" rendered="#{not p.editable}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Gender</f:facet>
-				#{p.gender}
+				<h:inputText value="#{p.gender}" size="10" rendered="#{p.editable}" />
+				<h:outputText value="#{p.gender}" rendered="#{not p.editable}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">State</f:facet>
-				#{p.state}
+				<h:inputText value="#{p.state}" size="10" rendered="#{p.editable}" />
+				<h:outputText value="#{p.state}" rendered="#{not p.editable}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Age</f:facet>
-				#{p.age}
+				<h:inputText value="#{p.age}" size="10" rendered="#{p.editable}" />
+				<h:outputText value="#{p.age}" rendered="#{not p.editable}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Note</f:facet>
-				#{p.note}
+				<h:inputText value="#{p.note}" size="10" rendered="#{p.editable}" />
+				<h:outputText value="#{p.note}" rendered="#{not p.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandLink value="Edit" action="#{person.editPerson(p)}"
+					rendered="#{not p.editable}" immediate="true"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:commandLink value="Delete" action="#{person.deletePerson(p)}"
+					immediate="true" />
 			</h:column>
 		</h:dataTable>
+		<br />
+		<h:commandButton id="EditButton" value="Save change"
+			action="#{person.saveChangedPerson}" immediate="true" />
 		<br />
 		<br />
 
@@ -51,7 +76,7 @@
 		<h:message for="firstNameInput" style="color:red" />
 		<br />
 
-		<h:outputLabel id="lastName" value="#{lbl['person.lastname']}" />
+		<h:outputLabel id="lastNameOutput" value="#{lbl['person.lastname']}" />
 		<h:inputText id="lastNameInput" value="#{person.lastName}"
 			required="true" requiredMessage="#{msg['person.lastname.required']}"
 			validatorMessage="#{msg['person.lastname.invalid']}">
@@ -98,7 +123,6 @@
 
 		<h:commandButton id="RegistationButton" value="Registrate"
 			action="#{person.registratePerson}" />
-
 
 	</h:form>
 </h:body>
