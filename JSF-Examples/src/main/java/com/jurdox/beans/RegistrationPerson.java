@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
@@ -30,7 +31,6 @@ public class RegistrationPerson implements Serializable {
 	private Integer age;
 
 	private List<Person> personsList = new ArrayList<Person>();
-//	private List<Person> helpList = new ArrayList<Person>();
 
 	public RegistrationPerson() {
 //		infoPerson();
@@ -169,4 +169,16 @@ public class RegistrationPerson implements Serializable {
 		return null;
 	}
 
+	private String att;
+	
+	public void vypis(ActionEvent event) {
+		att = (String) event.getComponent().getAttributes().get("att");
+		System.out.println("ActionListener: " + att);
+	}
+	
+	public String vypis2() {
+		System.out.println("Action: " + att);
+		return null;
+	}
+	
 }
