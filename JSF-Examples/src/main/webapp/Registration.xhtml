@@ -45,8 +45,12 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Note</f:facet>
-				<h:inputText value="#{p.note}" size="10" rendered="#{p.editable}" />
-				<h:outputText value="#{p.note}" rendered="#{not p.editable}" />
+				<h:inputText value="#{p.note}" size="10" rendered="#{p.editable}" >
+				<f:attribute name="newNote" value="#{person.newNote}" />
+				</h:inputText>
+				<h:outputText value="#{p.note}" rendered="#{not p.editable}">
+					
+				</h:outputText>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Edit</f:facet>
@@ -61,15 +65,15 @@
 		</h:dataTable>
 		<br />
 		<h:commandButton id="EditButton" value="Save change"
-			action="#{person.saveChangedPerson}" immediate="true" />
+			actionListener="#{person.actList}" action="#{person.newNotePrint}"
+			immediate="true" />
 		<br />
 		<br />
 
 		<h:outputLabel id="firstNameOutput" value="#{lbl['person.firstname']}" />
 		<h:inputText id="firstNameInput" value="#{person.firstName}"
 			required="true" requiredMessage="#{msg['person.firstname.required']}"
-			validatorMessage="#{msg['person.firstname.invalid']}"
-			onblur="popUpBlur()">
+			validatorMessage="#{msg['person.firstname.invalid']}">
 			<f:validateRegex pattern="^[a-zA-Z\s]+$" />
 		</h:inputText>
 		<h:message for="firstNameInput" style="color:red" />
@@ -123,10 +127,8 @@
 		<h:commandButton id="RegistationButton" value="Registrate"
 			action="#{person.registratePerson}" />
 
-		<h:commandButton id="rs" value="butooooooooon" immediate="true"
-			action="#{person.vypis2}" actionListener="#{person.vypis}">
-			<f:attribute name="att" value="hotnota attribute" />
-		</h:commandButton>
+		<h:commandButton id="InfoButton" value="Info" immediate="true"
+			action="#{person.infoPerson}" />
 
 	</h:form>
 </h:body>
