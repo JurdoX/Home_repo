@@ -29,19 +29,6 @@ public class Person {
 
 	private transient boolean editable;
 
-	public Person() {
-	}
-
-	public Person(String firstName, String lastName, String gender,
-			String state, String note, Integer age) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.state = state;
-		this.note = note;
-		this.age = age;
-	}
-
 	public Integer getPersonId() {
 		return personId;
 	}

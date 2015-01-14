@@ -2,6 +2,7 @@ package com.jurdox.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -10,11 +11,14 @@ import com.jurdox.util.HibernateUtil;
 
 public class RegistrationPersonImpl implements OperationWithPersonDAO {
 
+	final static Logger logger = Logger.getLogger(RegistrationPersonImpl.class);
+	
 	public boolean registratePerson(Person person) {
 
 		boolean success = false;
 
 		try {
+			logger.info("Saving person...");
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			session.save(person);
@@ -23,7 +27,7 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 
 			success = true;
 		} catch (HibernateException e) {
-			e.printStackTrace();
+			logger.error("Error: Save person not succes", e);
 		}
 
 		return success;
@@ -32,13 +36,14 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 	public List<Person> infoAboutPerson(List<Person> persons) {
 
 		try {
+			logger.info("Selecting persons...");
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			persons = session.createQuery("from Person").list();
 			session.getTransaction().commit();
 			session.close();
 		} catch (HibernateException e) {
-			e.printStackTrace();
+			logger.error("Error: Select from table not succes", e);
 		}
 		return persons;
 	}
@@ -48,6 +53,7 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 		boolean success = false;
 
 		try {
+			logger.info("Editing person...");
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			session.update(person);
@@ -56,7 +62,7 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 
 			success = true;
 		} catch (HibernateException e) {
-			e.printStackTrace();
+			logger.error("Error: Edit person not succes", e);
 		}
 
 		return success;
@@ -68,6 +74,7 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 		boolean success = false;
 
 		try {
+			logger.info("Deleting person...");
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			session.delete(person);
@@ -76,7 +83,7 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 
 			success = true;
 		} catch (HibernateException e) {
-			e.printStackTrace();
+			logger.error("Error: Delete person not succes", e);
 		}
 
 		return success;

@@ -4,10 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.event.ActionEvent;
-
-import org.apache.log4j.Logger;
-
 import com.jurdox.dao.OperationWithPersonDAO;
 import com.jurdox.dao.RegistrationPersonImpl;
 import com.jurdox.model.Person;
@@ -15,9 +11,6 @@ import com.jurdox.model.Person;
 public class RegistrationPerson implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	final Logger logger = Logger.getLogger(RegistrationPerson.class);
-	OperationWithPersonDAO operation = new RegistrationPersonImpl();
 
 	private String personId;
 	private String firstName;
@@ -27,29 +20,8 @@ public class RegistrationPerson implements Serializable {
 	private String note;
 	private Integer age;
 
-	private String newNote;
-		
-	public String getNewNote() {
-		return newNote;
-	}
-
-	public void setNewNote(String newNote) {
-		this.newNote = newNote;
-	}
-	
-	public void actList(ActionEvent event) {
-		newNote = (String) event.getComponent().getAttributes().get("newNote");
-	}
-	
-	public String newNotePrint() {
-		logger.info(getNewNote());
-		return null;
-	}
-
 	private List<Person> personsList = new ArrayList<Person>();
-
-	public RegistrationPerson() {
-	}
+	OperationWithPersonDAO operation = new RegistrationPersonImpl();
 
 	public void setEmptyFields() {
 		setAge(null);
@@ -69,9 +41,7 @@ public class RegistrationPerson implements Serializable {
 		person.setNote(getNote());
 		person.setState(getState());
 		personsList.add(person);
-		boolean result = operation.registratePerson(person);
-		logger.info("Succes: " + result);
-
+		operation.registratePerson(person);
 		setEmptyFields();
 
 		return null;
@@ -79,13 +49,13 @@ public class RegistrationPerson implements Serializable {
 
 	public String editPerson(Person person) {
 		person.setEditable(true);
+
 		return null;
 	}
 
 	public String saveChangedPerson() {
-		for (Person p : personsList) {
+		for (Person p : getPersonsList()) {
 			if (p.isEditable()) {
-				p.setNote(getNote());
 				p.setEditable(false);
 				operation.editPerson(p);
 			}
@@ -97,6 +67,7 @@ public class RegistrationPerson implements Serializable {
 	public String deletePerson(Person person) {
 		personsList.remove(person);
 		operation.deletePerson(person);
+
 		return null;
 	}
 
@@ -115,6 +86,8 @@ public class RegistrationPerson implements Serializable {
 
 		return null;
 	}
+
+	// getters and setters
 
 	public String getPersonId() {
 		return personId;
