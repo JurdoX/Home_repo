@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jurdox.dao.OperationWithPersonDAO;
-import com.jurdox.dao.RegistrationPersonImpl;
+import com.jurdox.dao.OperationPersonImpl;
 import com.jurdox.model.Person;
 
 public class RegistrationPerson implements Serializable {
@@ -20,18 +20,15 @@ public class RegistrationPerson implements Serializable {
 	private String note;
 	private Integer age;
 
-	private List<Person> personsList = new ArrayList<Person>();
-	OperationWithPersonDAO operation = new RegistrationPersonImpl();
+//	public List<Person> personsList;
+	OperationWithPersonDAO operation = new OperationPersonImpl();
 
-	public void setEmptyFields() {
-		setAge(null);
-		setFirstName(null);
-		setGender(null);
-		setLastName(null);
-		setNote(null);
-		setState(null);
-	}
-
+	TableOfPersons table = new TableOfPersons();
+	
+//	public RegistrationPerson() {
+//		personsList = new ArrayList<Person>();
+//	}
+	
 	public String registratePerson() {
 		Person person = new Person();
 		person.setAge(getAge());
@@ -40,51 +37,24 @@ public class RegistrationPerson implements Serializable {
 		person.setGender(getGender());
 		person.setNote(getNote());
 		person.setState(getState());
-		personsList.add(person);
-		operation.registratePerson(person);
-		setEmptyFields();
+		table.personsList.add(person);
+		operation.savePerson(person);
+		clearFields();
 
 		return null;
 	}
 
-	public String editPerson(Person person) {
-		person.setEditable(true);
-
-		return null;
+	public void clearFields() {
+		setAge(null);
+		setFirstName(null);
+		setGender(null);
+		setLastName(null);
+		setNote(null);
+		setState(null);
 	}
-
-	public String saveChangedPerson() {
-		for (Person p : getPersonsList()) {
-			if (p.isEditable()) {
-				p.setEditable(false);
-				operation.editPerson(p);
-			}
-		}
-
-		return null;
-	}
-
-	public String deletePerson(Person person) {
-		personsList.remove(person);
-		operation.deletePerson(person);
-
-		return null;
-	}
-
-	public String infoPerson() {
-		for (Person p : operation.infoAboutPerson(personsList)) {
-			Person person = new Person();
-			person.setAge(p.getAge());
-			person.setFirstName(p.getFirstName());
-			person.setLastName(p.getLastName());
-			person.setGender(p.getGender());
-			person.setNote(p.getNote());
-			person.setPersonId(p.getPersonId());
-			person.setState(p.getState());
-			personsList.add(person);
-		}
-
-		return null;
+	
+	public String getTableOfPersons() {
+		return "tableOfPersons";
 	}
 
 	// getters and setters
@@ -145,12 +115,12 @@ public class RegistrationPerson implements Serializable {
 		this.age = age;
 	}
 
-	public List<Person> getPersonsList() {
-		return personsList;
-	}
-
-	public void setPersonsList(List<Person> personsList) {
-		this.personsList = personsList;
-	}
+//	public List<Person> getPersonsList() {
+//		return personsList;
+//	}
+//
+//	public void setPersonsList(List<Person> personsList) {
+//		this.personsList = personsList;
+//	}
 
 }
