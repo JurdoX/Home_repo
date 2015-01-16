@@ -9,8 +9,29 @@
 	<managed-bean>
 		<managed-bean-name>person</managed-bean-name>
 		<managed-bean-class>com.jurdox.beans.RegistrationPerson</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>table</managed-bean-name>
+		<managed-bean-class>com.jurdox.beans.TableOfPersons</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
+	<!-- navigation rulers -->
+	<navigation-rule>
+		<from-view-id>Registration.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>tableOfPersons</from-outcome>
+			<to-view-id>/TableOfPersons.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>TableOfPersons.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>registration</from-outcome>
+			<to-view-id>/Registration.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 	<!-- add property files -->
 	<application>

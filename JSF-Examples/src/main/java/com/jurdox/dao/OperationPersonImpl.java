@@ -9,12 +9,22 @@ import org.hibernate.Session;
 import com.jurdox.model.Person;
 import com.jurdox.util.HibernateUtil;
 
-public class RegistrationPersonImpl implements OperationWithPersonDAO {
+/**
+ * this class implemented operations: select, insert, update, delete
+ * 
+ * @author JurdoX
+ *
+ */
+public class OperationPersonImpl implements OperationWithPersonDAO {
 
-	final static Logger logger = Logger.getLogger(RegistrationPersonImpl.class);
+	final static Logger logger = Logger.getLogger(OperationPersonImpl.class);
 	
-	public boolean registratePerson(Person person) {
-
+	/**
+	 * save person to database
+	 */
+	@Override
+	public boolean savePerson(Person person) {
+		
 		boolean success = false;
 
 		try {
@@ -33,8 +43,13 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 		return success;
 	}
 
-	public List<Person> infoAboutPerson(List<Person> persons) {
-
+	/**
+	 * select all persons from database
+	 * 
+	 * @return list of persons
+	 */
+	@Override
+	public List<Person> viewPerson(List<Person> persons) {
 		try {
 			logger.info("Selecting persons...");
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -48,7 +63,11 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 		return persons;
 	}
 
-	public boolean editPerson(Person person) {
+	/**
+	 * update person
+	 */
+	@Override
+	public boolean updatePerson(Person person) {
 
 		boolean success = false;
 
@@ -69,6 +88,10 @@ public class RegistrationPersonImpl implements OperationWithPersonDAO {
 
 	}
 
+	/**
+	 * delete person from database
+	 */
+	@Override
 	public boolean deletePerson(Person person) {
 		
 		boolean success = false;
