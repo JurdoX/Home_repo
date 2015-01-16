@@ -1,3 +1,9 @@
+.title {
+	text-decoration: underline;
+	font-size: large;
+	font-weight: bold;	
+}
+
 .table {
 	border-collapse: collapse;
 }
