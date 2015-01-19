@@ -9,6 +9,8 @@
 	<h:outputScript name="testScript.js" library="js" />
 </h:head>
 <h:body>
+	<h:outputLabel id="title" value="#{lbl['title.tableOfPersons']}"
+		styleClass="title" />
 	<h:form>
 		<h:dataTable value="#{table.personsList}" var="p" styleClass="table"
 			headerClass="table-header" rowClasses="table-odd-row, table-even-row">
@@ -41,7 +43,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Note</f:facet>
-				<h:inputText value="#{p.note}" size="10" rendered="#{p.editable}"/>
+				<h:inputText value="#{p.note}" size="10" rendered="#{p.editable}" />
 				<h:outputText value="#{p.note}" rendered="#{not p.editable}" />
 			</h:column>
 			<h:column>
