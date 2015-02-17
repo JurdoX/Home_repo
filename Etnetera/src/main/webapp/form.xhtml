@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+</h:head>
+<h:body>
+	<h:outputText value="Etnetera" />
+
+	<h:form>
+		<h:outputLabel id="nameOutput" value="#{lbl['form.name']}" />
+		<h:inputText id="nameInput" value="#{form.name}" required="true"
+			requiredMessage="#{msg['form.name.required']}"
+			validatorMessage="#{msg['form.name.invalid']}">
+			<f:validateRegex pattern="^[a-zA-Z\s]+$" />
+		</h:inputText>
+		<h:message for="nameInput" style="color:red" />
+		<br />
+
+		<h:outputLabel id="phoneOutput" value="#{lbl['form.phone']}" />
+		<h:inputText id="phoneInput" value="#{form.phone}" required="true"
+			requiredMessage="#{msg['form.phone.required']}"
+			validatorMessage="#{msg['form.phone.invalid']}">
+			<f:validateRegex pattern="^([+]?[\d]+)?$" />
+			<f:validateLength minimum="7" maximum="13" />
+		</h:inputText>
+		<h:message for="phoneInput" style="color:red" />
+		<br />
+
+		<h:outputLabel id="emailOutput" value="#{lbl['form.email']}" />
+		<h:inputText id="emailInput" value="#{form.email}" required="true"
+			requiredMessage="#{msg['form.email.required']}"
+			validatorMessage="#{msg['form.email.invalid']}">
+			<f:validateRegex
+				pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+		</h:inputText>
+		<h:message for="emailInput" style="color:red" />
+		<br />
+
+		<h:commandButton id="button" value="#{lbl['form.button.submit']}"
+			action="#{form.savePerson}" />
+
+		<h:commandLink id="linkTable" value="#{lbl['form.link.showTable']}"
+			action="#{form.showTable}" immediate="true" />
+		<br />
+
+		<h:commandLink id="linkEmail" value="#{lbl['form.link.sendEmail']}"
+			action="#{form.sendEmail}" immediate="true" />
+	</h:form>
+</h:body>
+</html>

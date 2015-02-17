@@ -3,60 +3,64 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<h:outputStylesheet name="registration-style.css" library="css" />
 	<h:outputScript name="testScript.js" library="js" />
 </h:head>
+
 <h:body>
 	<h:outputLabel id="title" value="#{lbl['title.tableOfPersons']}"
 		styleClass="title" />
 	<h:form>
-		<h:dataTable value="#{table.personsList}" var="p" styleClass="table"
+		<p:dataTable value="#{table.personsList}" var="p" styleClass="table"
+			paginator="true" rowsPerPageTemplate="1,3,5"
 			headerClass="table-header" rowClasses="table-odd-row, table-even-row">
-			<h:column>
+			<p:column>
 				<f:facet name="header">Name</f:facet>
 				<h:inputText value="#{p.firstName}" size="10"
 					rendered="#{p.editable}" />
 				<h:outputText value="#{p.firstName}" rendered="#{not p.editable}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Surname</f:facet>
 				<h:inputText value="#{p.lastName}" size="10"
 					rendered="#{p.editable}" />
 				<h:outputText value="#{p.lastName}" rendered="#{not p.editable}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Gender</f:facet>
 				<h:inputText value="#{p.gender}" size="10" rendered="#{p.editable}" />
 				<h:outputText value="#{p.gender}" rendered="#{not p.editable}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">State</f:facet>
 				<h:inputText value="#{p.state}" size="10" rendered="#{p.editable}" />
 				<h:outputText value="#{p.state}" rendered="#{not p.editable}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Age</f:facet>
 				<h:inputText value="#{p.age}" size="10" rendered="#{p.editable}" />
 				<h:outputText value="#{p.age}" rendered="#{not p.editable}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Note</f:facet>
 				<h:inputText value="#{p.note}" size="10" rendered="#{p.editable}" />
 				<h:outputText value="#{p.note}" rendered="#{not p.editable}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Edit</f:facet>
 				<h:commandLink value="Edit" action="#{table.editPerson(p)}"
 					rendered="#{not p.editable}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Delete</f:facet>
 				<h:commandLink value="Delete" action="#{table.deletePerson(p)}"
 					immediate="true" />
-			</h:column>
-		</h:dataTable>
+			</p:column>
+		</p:dataTable>
 		<br />
 
 		<h:commandButton id="EditButton" value="Save change"
@@ -65,6 +69,8 @@
 			action="#{table.viewPerson}" />
 		<h:commandButton id="BackButton" value="Back"
 			action="#{table.getRegistration}" />
+
+		<h:commandLink value="Download" actionListener="#{demo.onSomeEvent}" />
 
 	</h:form>
 </h:body>

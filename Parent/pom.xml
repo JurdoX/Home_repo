@@ -31,6 +31,13 @@
 			<name>java.net m2 repo</name>
 			<url>http://download.java.net/maven/2</url>
 		</repository>
+		
+		<!-- PrimeFaces -->
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Repo</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
 	</repositories>
 
 	<profiles>

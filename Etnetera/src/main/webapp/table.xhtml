@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<h:outputText value="Table" />
+	<h:form>
+		<p:dataTable id="table" value="#{table.list}" var="p" paginator="true"
+			rows="5">
+			<p:column>
+				<f:facet name="header">NAME</f:facet>
+				<h:outputText value="#{p.name}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">PHONE</f:facet>
+				<h:outputText value="#{p.phone}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">EMAIL</f:facet>
+				<h:outputText value="#{p.email}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">DATE</f:facet>
+				<h:outputText value="#{p.date}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">CLOSE</f:facet>
+				<h:outputText value="#{p.close}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">CHANGE</f:facet>
+				<h:outputText value="#{p.changed}" />
+			</p:column>
+		</p:dataTable>
+
+		<h:commandLink value="#{lbl['table.link.download']}"
+			actionListener="#{table.download}" immediate="true" />
+		<br />
+		<br />
+
+		<h:outputLabel id="emailOutput" value="#{lbl['table.email']}" />
+		<h:inputText id="emailInput" value="#{table.email}" required="true"
+			requiredMessage="#{msg['table.email.required']}"
+			validatorMessage="#{msg['table.email.invalid']}">
+			<f:validateRegex
+				pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+		</h:inputText>
+		<h:message for="emailInput" style="color:red" />
+		<h:commandButton id="button" value="#{lbl['table.button.send']}"
+			action="#{table.sendExportDBToMail}" />
+
+	</h:form>
+</h:body>
+</html>
