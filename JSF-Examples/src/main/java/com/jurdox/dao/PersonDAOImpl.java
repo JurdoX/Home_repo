@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.jurdox.model.Person;
@@ -15,32 +16,26 @@ import com.jurdox.util.HibernateUtil;
  * @author JurdoX
  *
  */
-public class OperationPersonImpl implements OperationWithPersonDAO {
+public class PersonDAOImpl implements PersonDAO {
 
-	final static Logger logger = Logger.getLogger(OperationPersonImpl.class);
+	final static Logger logger = Logger.getLogger(PersonDAOImpl.class);
+	private Session session = HibernateUtil.getSessionFactory().openSession();
 	
 	/**
 	 * save person to database
 	 */
 	@Override
-	public boolean savePerson(Person person) {
-		
-		boolean success = false;
-
+	public void savePerson(Person person) {
 		try {
 			logger.info("Saving person...");
-			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			session.save(person);
 			session.getTransaction().commit();
 			session.close();
-
-			success = true;
 		} catch (HibernateException e) {
 			logger.error("Error: Save person not succes", e);
 		}
 
-		return success;
 	}
 
 	/**
@@ -49,7 +44,7 @@ public class OperationPersonImpl implements OperationWithPersonDAO {
 	 * @return list of persons
 	 */
 	@Override
-	public List<Person> viewPerson(List<Person> persons) {
+	public List<Person> selectAllPersons(List<Person> persons) {
 		try {
 			logger.info("Selecting persons...");
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -62,15 +57,35 @@ public class OperationPersonImpl implements OperationWithPersonDAO {
 		}
 		return persons;
 	}
+	
+	/**
+	 * select persons from one page (for paging)
+	 * 
+	 * @return persons
+	 */
+	@Override
+	public List<Person> selectPersonPage(List<Person> persons) {
+		try {
+			logger.info("Select persons from one page...");
+			session.beginTransaction();
+			Query q = session.createQuery("from Person");
+			q.setFirstResult(3);
+			q.setMaxResults(5);
+			persons = q.list();
+			session.getTransaction().commit();
+			session.close();
+		} catch (HibernateException e) {
+			logger.error("Error: Select persons not succes", e);
+		}
+
+		return persons;
+	}
 
 	/**
 	 * update person
 	 */
 	@Override
-	public boolean updatePerson(Person person) {
-
-		boolean success = false;
-
+	public void updatePerson(Person person) {
 		try {
 			logger.info("Editing person...");
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -78,24 +93,16 @@ public class OperationPersonImpl implements OperationWithPersonDAO {
 			session.update(person);
 			session.getTransaction().commit();
 			session.close();
-
-			success = true;
 		} catch (HibernateException e) {
 			logger.error("Error: Edit person not succes", e);
 		}
-
-		return success;
-
 	}
 
 	/**
 	 * delete person from database
 	 */
 	@Override
-	public boolean deletePerson(Person person) {
-		
-		boolean success = false;
-
+	public void deletePerson(Person person) {
 		try {
 			logger.info("Deleting person...");
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -103,13 +110,9 @@ public class OperationPersonImpl implements OperationWithPersonDAO {
 			session.delete(person);
 			session.getTransaction().commit();
 			session.close();
-
-			success = true;
 		} catch (HibernateException e) {
 			logger.error("Error: Delete person not succes", e);
 		}
-
-		return success;
 	}
 
 }

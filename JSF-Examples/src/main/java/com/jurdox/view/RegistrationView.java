@@ -1,14 +1,10 @@
-package com.jurdox.beans;
+package com.jurdox.view;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.jurdox.dao.OperationWithPersonDAO;
-import com.jurdox.dao.OperationPersonImpl;
-import com.jurdox.model.Person;
+import com.jurdox.services.RegistrationService;
 
-public class RegistrationPerson implements Serializable {
+public class RegistrationView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,30 +16,24 @@ public class RegistrationPerson implements Serializable {
 	private String note;
 	private Integer age;
 
-//	public List<Person> personsList;
-	OperationWithPersonDAO operation = new OperationPersonImpl();
+	private RegistrationService service = new RegistrationService();
 
-	TableOfPersons table = new TableOfPersons();
-	
-//	public RegistrationPerson() {
-//		personsList = new ArrayList<Person>();
-//	}
-	
+	/**
+	 * save person to DB and clear fields
+	 * 
+	 * @return
+	 */
 	public String registratePerson() {
-		Person person = new Person();
-		person.setAge(getAge());
-		person.setFirstName(getFirstName());
-		person.setLastName(getLastName());
-		person.setGender(getGender());
-		person.setNote(getNote());
-		person.setState(getState());
-		table.personsList.add(person);
-		operation.savePerson(person);
+		service.registratePerson(getAge(), getFirstName(), getLastName(),
+				getGender(), getNote(), getState());
 		clearFields();
 
 		return null;
 	}
 
+	/**
+	 * clear fields after adding new person
+	 */
 	public void clearFields() {
 		setAge(null);
 		setFirstName(null);
@@ -52,7 +42,12 @@ public class RegistrationPerson implements Serializable {
 		setNote(null);
 		setState(null);
 	}
-	
+
+	/**
+	 * navigate to next page
+	 * 
+	 * @return table of persons
+	 */
 	public String getTableOfPersons() {
 		return "tableOfPersons";
 	}
@@ -114,13 +109,5 @@ public class RegistrationPerson implements Serializable {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-
-//	public List<Person> getPersonsList() {
-//		return personsList;
-//	}
-//
-//	public void setPersonsList(List<Person> personsList) {
-//		this.personsList = personsList;
-//	}
 
 }

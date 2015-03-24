@@ -8,19 +8,15 @@
 	<!-- managed beans - name used in *.xhtml files -->
 	<managed-bean>
 		<managed-bean-name>person</managed-bean-name>
-		<managed-bean-class>com.jurdox.beans.RegistrationPerson</managed-bean-class>
+		<managed-bean-class>com.jurdox.view.RegistrationView</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>table</managed-bean-name>
-		<managed-bean-class>com.jurdox.beans.TableOfPersons</managed-bean-class>
+		<managed-bean-class>com.jurdox.view.PersonListView</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>demo</managed-bean-name>
-		<managed-bean-class>com.jurdox.beans.Demo</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
+	
 
 	<!-- navigation rulers -->
 	<navigation-rule>

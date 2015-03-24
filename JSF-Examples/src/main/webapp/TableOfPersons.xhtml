@@ -65,12 +65,13 @@
 
 		<h:commandButton id="EditButton" value="Save change"
 			action="#{table.saveChangedPerson}" />
-		<h:commandButton id="InfoButton" value="Info"
-			action="#{table.viewPerson}" />
 		<h:commandButton id="BackButton" value="Back"
 			action="#{table.getRegistration}" />
-
-		<h:commandLink value="Download" actionListener="#{demo.onSomeEvent}" />
+		<br />
+		<br />
+		
+		<h:commandLink value="Export to excel"
+			actionListener="#{demo.onSomeEvent}" />
 
 	</h:form>
 </h:body>
