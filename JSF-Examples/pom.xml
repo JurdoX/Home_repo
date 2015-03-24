@@ -15,15 +15,6 @@
 	<name>JSF-Examples Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	
-	<repositories>
-	<!-- PrimeFaces -->
-		<repository>
-			<id>prime-repo</id>
-			<name>Prime Repo</name>
-			<url>http://repository.primefaces.org</url>
-		</repository>
-	</repositories>
-
 	<dependencies>
 
 		<!-- Hibernate -->

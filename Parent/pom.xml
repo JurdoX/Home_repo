@@ -32,7 +32,7 @@
 			<url>http://download.java.net/maven/2</url>
 		</repository>
 		
-		<!-- PrimeFaces -->
+		<!-- PRIMA_FACES -->
 		<repository>
 			<id>prime-repo</id>
 			<name>Prime Repo</name>
@@ -51,6 +51,7 @@
 				<module>../JSF-Examples</module>
 				<!--module>../JSON-Jackson</module> <module>../JSF-Examples</module> 
 					<module>../JAXB-Examples</module -->
+				<module>../WebServices</module>
 			</modules>
 		</profile>
 	</profiles>
