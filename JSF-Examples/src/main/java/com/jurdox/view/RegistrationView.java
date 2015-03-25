@@ -52,6 +52,16 @@ public class RegistrationView implements Serializable {
 		return "tableOfPersons";
 	}
 
+	/**
+	 * navigate to next page
+	 * 
+	 * @return mailer
+	 */
+	public String getEmail() {
+		return "sendEmail";
+	}
+
+	
 	// getters and setters
 
 	public String getPersonId() {

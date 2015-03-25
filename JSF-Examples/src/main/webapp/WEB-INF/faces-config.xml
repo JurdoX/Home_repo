@@ -16,6 +16,11 @@
 		<managed-bean-class>com.jurdox.view.PersonListView</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>email</managed-bean-name>
+		<managed-bean-class>com.jurdox.view.EmailView</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 	
 
 	<!-- navigation rulers -->
@@ -24,6 +29,13 @@
 		<navigation-case>
 			<from-outcome>tableOfPersons</from-outcome>
 			<to-view-id>/TableOfPersons.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>Registration.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>sendEmail</from-outcome>
+			<to-view-id>/Email.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -37,11 +49,11 @@
 	<!-- add property files -->
 	<application>
 		<resource-bundle>
-			<base-name>com.jurdox.properties.label</base-name>
+			<base-name>naming.label</base-name>
 			<var>lbl</var>
 		</resource-bundle>
 		<resource-bundle>
-			<base-name>com.jurdox.properties.message</base-name>
+			<base-name>naming.message</base-name>
 			<var>msg</var>
 		</resource-bundle>
 	</application>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet name="registration-style.css" library="css" />
+	<h:outputScript name="testScript.js" library="js" />
+</h:head>
+<h:body>
+	<h:outputLabel id="title" value="#{lbl['title.email']}"
+		styleClass="title" />
+	<h:form enctype="multipart/form-data">
+		<h:outputText id="toOutput" value="#{lbl['email.to']}" />
+		<h:inputText id="emailToInput" value="#{email.emailTo}"
+			required="true" requiredMessage="#{msg['email.to.required']}"
+			validatorMessage="#{msg['email.to.invalid']}">
+
+		</h:inputText>
+		<h:message for="emailInput" style="color:red" />
+		<br />
+
+		<h:outputText id="subjectOutput" value="#{lbl['email.subject']}" />
+		<h:inputText id="subjectInput" value="#{email.subject}" />
+		<br />
+
+		<h:outputText id="textMsgOutput" value="#{lbl['email.message.text']}" />
+		<br />
+		<h:inputTextarea id="textMsgInput" value="#{email.textMessage}"
+			rows="10" cols="50" />
+		<br />
+
+		<p:growl id="messages" showDetail="true" />
+
+		<p:fileUpload value="#{email.uploadedFile}" mode="simple" />
+
+		<h:commandButton value="#{lbl['email.button.send']}" ajax="false"
+			actionListener="#{email.sendEmail}" mode="simple" />
+		<br />
+		<h:outputText id="countOutput" value="#{lbl['email.count']}" />
+		<h:inputText id="countInput" value="#{email.countOfEmails}"
+			maxlength="3" />
+	</h:form>
+</h:body>
+
+</html>
