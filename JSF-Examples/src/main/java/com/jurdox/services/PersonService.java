@@ -7,7 +7,7 @@ import com.jurdox.dao.PersonDAO;
 import com.jurdox.dao.PersonDAOImpl;
 import com.jurdox.model.Person;
 
-public class EditService implements Serializable {
+public class PersonService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jurdox.model.Person;
-import com.jurdox.services.EditService;
+import com.jurdox.services.PersonService;
 
 public class PersonListView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private List<Person> personsList;
-	private EditService service = new EditService();
+	private PersonService service = new PersonService();
 
 	/**
 	 * constructor: view all person in the table

@@ -35,7 +35,6 @@ public class PersonDAOImpl implements PersonDAO {
 		} catch (HibernateException e) {
 			logger.error("Error: Save person not succes", e);
 		}
-
 	}
 
 	/**

@@ -42,6 +42,11 @@
 		<h:outputText id="countOutput" value="#{lbl['email.count']}" />
 		<h:inputText id="countInput" value="#{email.countOfEmails}"
 			maxlength="3" />
+		<br />
+		
+		<h:commandLink id="BackLink" value="Back"
+			action="#{email.getRegistration}" immediate="true" />
+			
 	</h:form>
 </h:body>
 

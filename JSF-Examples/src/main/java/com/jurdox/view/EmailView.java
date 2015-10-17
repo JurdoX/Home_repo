@@ -5,7 +5,7 @@ import org.primefaces.model.UploadedFile;
 import com.jurdox.services.EmailService;
 
 public class EmailView {
-	
+
 	private String emailTo;
 	private String subject;
 	private String textMessage;
@@ -15,7 +15,7 @@ public class EmailView {
 	private EmailService service = new EmailService();
 
 	public String sendEmail() {
-		service.completeMessage(getEmailTo(), getSubject(), getTextMessage(),
+		service.sendEmail(getEmailTo(), getSubject(), getTextMessage(),
 				getUploadedFile(), getCountOfEmails());
 		clear();
 
@@ -27,6 +27,15 @@ public class EmailView {
 		setSubject("");
 		setTextMessage("");
 		setCountOfEmails(1);
+	}
+
+	/**
+	 * navigate to registration form
+	 * 
+	 * @return registration page
+	 */
+	public String getRegistration() {
+		return "registration";
 	}
 
 	public String getEmailTo() {

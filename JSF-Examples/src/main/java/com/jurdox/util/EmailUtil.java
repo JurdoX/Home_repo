@@ -6,11 +6,14 @@ import java.util.Properties;
 
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
@@ -25,20 +28,25 @@ import org.apache.log4j.Logger;
 // TODO: CHECK MORE RECIPIENTS
 
 public class EmailUtil {
-	
+
 	private static Properties props = new Properties();
 	private static Logger logger = Logger.getLogger(EmailUtil.class);
 
 	/**
 	 * send email with/without attachment
 	 * 
-	 * @param emailTo: recipient/recipients
+	 * @param emailTo
+	 *            : recipient/recipients
 	 * @param subject
 	 * @param textMessage
-	 * @param filename: attachment
-	 * @param buffer: body of attachment
-	 * @param type: type of file/attachment
-	 * @param count: how many email want to send (bomber)
+	 * @param filename
+	 *            : attachment
+	 * @param buffer
+	 *            : body of attachment
+	 * @param type
+	 *            : type of file/attachment
+	 * @param count
+	 *            : how many email want to send (bomber)
 	 */
 	public void sendTextMessage(String[] emailTo, String subject,
 			String textMessage, String filename, byte[] buffer, String type,
@@ -52,21 +60,23 @@ public class EmailUtil {
 
 		try {
 			// load properties
-			input = EmailUtil.class.getClassLoader().getResourceAsStream("email.properties");
+			input = EmailUtil.class.getClassLoader().getResourceAsStream(
+					"email.properties");
 			props.load(input);
 
 			// login to email
 			multi = new MimeMultipart();
 			message = new MimeMessage(getSession());
-			message.setFrom(new InternetAddress(props.getProperty("mail.username")));
-			
+			message.setFrom(new InternetAddress(props
+					.getProperty("mail.username")));
+
 			// set one or more recipients
 			InternetAddress[] addressTo = new InternetAddress[emailTo.length];
 			for (int i = 0; i < emailTo.length; i++) {
 				addressTo[i] = new InternetAddress(emailTo[i]);
 			}
 			message.setRecipients(Message.RecipientType.TO, addressTo);
-			
+
 			// set subject
 			message.setSubject(subject);
 
@@ -101,7 +111,7 @@ public class EmailUtil {
 	 * 
 	 * @return session
 	 */
-	public Session getSession() {
+	public static Session getSession() {
 		return Session.getInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(props
@@ -109,6 +119,20 @@ public class EmailUtil {
 						.getProperty("mail.password"));
 			}
 		});
+	}
+
+	public static void main(String[] args) throws Exception {
+		// create the POP3 store object and connect with the pop server
+		Store store = getSession().getStore();
+		store.connect();
+
+		// create the folder object and open it
+		Folder emailFolder = store.getFolder("INBOX");
+		emailFolder.open(Folder.READ_ONLY);
+
+		// retrieve the messages from the folder in an array and print it
+		Message[] messages = emailFolder.getMessages();
+		System.out.println("messages.length---" + messages.length);
 	}
 
 }
