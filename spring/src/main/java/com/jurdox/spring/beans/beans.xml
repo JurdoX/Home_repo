@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+
+	<!-- <bean id="person" class="com.jurdox.spring.Person" scope="singleton" -->
+	<!-- destroy-method="onDestroy" init-method="onCreate"> -->
+	<!-- <constructor-arg name="id" type="int" value="777"></constructor-arg> -->
+	<!-- <constructor-arg value="Mary" name="name" type="String"></constructor-arg> -->
+	<!-- <property name="taxId" value="321"></property> -->
+	<!-- <property name="address" ref="address"></property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="person2" class="com.jurdox.spring.Person" scope="singleton" -->
+	<!-- init-method="onCreate" destroy-method="onDestroy" factory-method="createPerson" -->
+	<!-- factory-bean="personfactory"> -->
+	<!-- <constructor-arg name="id" type="int" value="555"></constructor-arg> -->
+	<!-- <constructor-arg value="Miky" name="name" type="String"></constructor-arg> -->
+	<!-- <property name="taxId" value="321"></property> -->
+	<!-- <property name="address" ref="address"></property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="address" class="com.jurdox.spring.Address"> -->
+	<!-- <constructor-arg name="street" value="Constantine and Method"></constructor-arg> -->
+	<!-- <constructor-arg name="postcode" value="12345"></constructor-arg> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="address2" class="com.jurdox.spring.Address" p:street="Komenskeho" -->
+	<!-- p:postcode="159"> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="personfactory" class="com.jurdox.spring.PersonFactory"> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="fruits" class="com.jurdox.spring.Fruits"> -->
+	<!-- <constructor-arg value='My fruit coctail:'></constructor-arg> -->
+	<!-- <constructor-arg> -->
+	<!-- <list> -->
+	<!-- <value>apple</value> -->
+	<!-- <value>banana</value> -->
+	<!-- <value>orange</value> -->
+	<!-- <value>kiwi</value> -->
+	<!-- <value>pear</value> -->
+	<!-- </list> -->
+	<!-- </constructor-arg> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="lion" class="com.jurdox.spring.Animal"> -->
+	<!-- <property name="name" value="Igor"></property> -->
+	<!-- <property name="type" value="lion"></property> -->
+	<!-- </bean> -->
+	<!-- <bean id="elephant" class="com.jurdox.spring.Animal"> -->
+	<!-- <property name="name" value="Richard"></property> -->
+	<!-- <property name="type" value="elephant"></property> -->
+	<!-- </bean> -->
+	<!-- <bean id="snake" class="com.jurdox.spring.Animal"> -->
+	<!-- <property name="name" value="Bob"></property> -->
+	<!-- <property name="type" value="snake"></property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="jungle" class="com.jurdox.spring.Jungle"> -->
+
+	<!-- <property name="foods"> -->
+	<!-- <props> -->
+	<!-- <prop key="gorilla">banana</prop> -->
+	<!-- <prop key="panda">bamboo</prop> -->
+	<!-- <prop key="snake">eggs</prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+
+	<!-- <property name="animals"> -->
+	<!-- <map> -->
+	<!-- <entry key="lion" value-ref="lion"></entry> -->
+	<!-- <entry key="elephant" value-ref="elephant"></entry> -->
+	<!-- <entry key="snake" value-ref="snake"></entry> -->
+	<!-- </map> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<context:annotation-config></context:annotation-config>
+
+	<!-- <bean id="logger" class="com.jurdox.spring.logging.Logger"></bean> -->
+
+	<!-- <bean id="consoleWriter" class="com.jurdox.spring.logging.ConsoleWriter"> -->
+	<!-- <qualifier value="toconsole"></qualifier> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="squirrel" class="com.jurdox.spring.logging.ConsoleWriter"></bean> -->
+
+	<!-- <bean id="mongoose" class="com.jurdox.spring.logging.FileWriter"></bean> -->
+
+	<context:component-scan base-package="com.jurdox.spring.database"></context:component-scan>
+
+
+	<!-- <bean id="robot" class="com.jurdox.spring.Robot"> -->
+	<!-- <property name="id" value="#{randomText.text.length()}"></property> -->
+	<!-- <property name="speech" value="#{'random text: ' + randomText.getText()}"></property> -->
+	<!-- </bean> -->
+	<!-- <bean id="randomText" class="com.jurdox.spring.RandomText"></bean> -->
+	<context:property-placeholder location="com/jurdox/spring/prop/jdbc.properties" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+</beans>
+
