@@ -1,21 +1,31 @@
 package com.jurdox.spring.web.dao;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.jurdox.spring.web.validation.ValidEmail;
+
 public class Offer {
 
 	private int id;
+
+	@Size(min = 5, max = 100, message = "Name must be between 5 and 100 characters.")
 	private String name;
+
+	@NotNull
+	@ValidEmail(min = 6)
 	private String email;
 	private String text;
 
 	public Offer() {
 	}
-	
+
 	public Offer(String name, String email, String text) {
 		this.name = name;
 		this.email = email;
 		this.text = text;
 	}
-	
+
 	public Offer(int id, String name, String email, String text) {
 		this.id = id;
 		this.name = name;
@@ -57,8 +67,7 @@ public class Offer {
 
 	@Override
 	public String toString() {
-		return "Offer [id=" + id + ", name=" + name + ", email=" + email
-				+ ", text=" + text + "]";
+		return "Offer [id=" + id + ", name=" + name + ", email=" + email + ", text=" + text + "]";
 	}
 
 }
