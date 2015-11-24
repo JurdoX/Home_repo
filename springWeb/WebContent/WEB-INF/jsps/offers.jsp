@@ -5,14 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css"/>
 <title>Insert title here</title>
 </head>
 <body>
 
-	<c:forEach var="offer" items="${offers}">
-		<p><c:out value="${offer}"></c:out></p>
-	</c:forEach>
-
-
+	<table class="offers">
+		<tr><td>Name</td><td>Email</td><td>Offer</td></tr>
+		
+		<c:forEach var="offer" items="${offers}">
+			<tr>
+				<td><c:out value="${offer.name}"></c:out></td>
+				<td><c:out value="${offer.email}"></c:out></td>
+				<td><c:out value="${offer.text}"></c:out></td>
+			</tr>
+		</c:forEach>
+	</table>
+	
 </body>
 </html>
