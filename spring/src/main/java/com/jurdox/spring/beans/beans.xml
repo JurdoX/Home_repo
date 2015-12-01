@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 
 
 	<!-- <bean id="person" class="com.jurdox.spring.Person" scope="singleton" -->
@@ -80,7 +82,7 @@
 	<!-- </property> -->
 	<!-- </bean> -->
 
-	<context:annotation-config></context:annotation-config>
+	<!-- <context:annotation-config></context:annotation-config> -->
 
 	<!-- <bean id="logger" class="com.jurdox.spring.logging.Logger"></bean> -->
 
@@ -92,7 +94,7 @@
 
 	<!-- <bean id="mongoose" class="com.jurdox.spring.logging.FileWriter"></bean> -->
 
-	<context:component-scan base-package="com.jurdox.spring.database"></context:component-scan>
+	<!-- <context:component-scan base-package="com.jurdox.spring.database"></context:component-scan> -->
 
 
 	<!-- <bean id="robot" class="com.jurdox.spring.Robot"> -->
@@ -100,19 +102,26 @@
 	<!-- <property name="speech" value="#{'random text: ' + randomText.getText()}"></property> -->
 	<!-- </bean> -->
 	<!-- <bean id="randomText" class="com.jurdox.spring.RandomText"></bean> -->
-	<context:property-placeholder location="com/jurdox/spring/prop/jdbc.properties" />
+	<!-- <context:property-placeholder location="com/jurdox/spring/prop/jdbc.properties" 
+		/> -->
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		
-		<property name="driverClassName" value="${jdbc.driver}"></property>
-		<property name="url" value="${jdbc.url}"></property>
-		<property name="username" value="${jdbc.username}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-	</bean>
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" -->
+	<!-- destroy-method="close"> -->
+
+	<!-- <property name="driverClassName" value="${jdbc.driver}"></property> -->
+	<!-- <property name="url" value="${jdbc.url}"></property> -->
+	<!-- <property name="username" value="${jdbc.username}"></property> -->
+	<!-- <property name="password" value="${jdbc.password}"></property> -->
+	<!-- </bean> -->
+	<!-- <bean id="transactionManager" -->
+	<!-- class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+	<!-- <property name="dataSource" ref="dataSource"></property> -->
+	<!-- </bean> -->
+
+	
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.jurdox.spring.aop"></context:component-scan>
+	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>
 
