@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +16,7 @@ Create a new offer.
 
 <sf:form method="post" action="${pageContext.request.contextPath}/docreate" commandName="offer">
 
-<table class=".formtable">
+<table class="formtable">
 	<tr><td class="label">Name: </td><td><sf:input class="colntrol" path="name" name="name" type="text"/><br/>
 		<sf:errors path="name" cssClass="error"></sf:errors></td></tr>
 	<tr><td class="label">Email: </td><td><sf:input class="colntrol" path="email" name="email" type="text"/><br/>
@@ -24,8 +26,9 @@ Create a new offer.
 	<tr><td class="label">Name:</td><td><input class="colntrol" value="Create advert" type="submit"/></td></tr>
 </table>
 
-
 </sf:form>
+
+<p><a href="<c:url value="/newaccount" />">Create a new account.</a></p>
 
 </body>
 </html>

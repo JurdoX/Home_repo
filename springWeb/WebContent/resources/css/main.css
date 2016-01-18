@@ -30,6 +30,10 @@ textarea {
 	margin-left: 10px;
 }
 
+p.error {
+	color: blue;
+}
+
 table.offers {
 	padding: 10px;
 	border: 1px solid black;
