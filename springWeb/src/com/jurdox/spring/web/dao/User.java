@@ -10,7 +10,7 @@ import com.jurdox.spring.web.validation.ValidEmail;
 public class User {
 
 	@NotBlank(message = "Username can not be blank.")
-	@Size(min = 3, max = 15, message = "Username must be between 3 and 15 chars long.")
+	@Size(min = 3, max = 15)
 	@Pattern(regexp = "^\\w{8,}$", message = "Username can consist of number, letters and the underscore character.")
 	private String username;
 

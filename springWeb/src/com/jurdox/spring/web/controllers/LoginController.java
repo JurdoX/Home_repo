@@ -41,6 +41,12 @@ public class LoginController {
 		
 		user.setAuthority("user");
 		user.setEnabled(true);
+		
+		if (usersService.exists(user.getUsername())) {
+			result.rejectValue("username", "DuplicateKey.user.username");
+			return "newaccount";
+		}
+		
 		usersService.create(user);
 		
 		return "accountcreated";

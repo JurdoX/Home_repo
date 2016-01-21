@@ -19,7 +19,8 @@ Create a new account.
 		<div class="error"><sf:errors path="username" cssClass="error" /></div></td></tr>
 	<tr><td class="label">Password: </td><td><sf:input class="control" path="password" name="password" type="text"/><br/>
 		<div class="error"><sf:errors path="password" cssClass="error" /></div></td></tr>
-	<tr><td class="label">Confirm Password: </td><td><sf:input class="control" path="password" name="password" type="text"/><br/>
+	<tr><td class="label">Confirm Password: </td><td>
+<%-- 	<sf:input class="control" path="password" name="password" type="text"/><br/> --%>
 <%-- 		<div class="error"><sf:errors path="confirm" cssClass="error" /></div></td></tr> --%>
 	<tr><td class="label">Email: </td><td><sf:input class="control" path="email" name="email" type="text"/><br/>
 		<div class="error"><sf:errors path="email" cssClass="error" /></div></td></tr>
