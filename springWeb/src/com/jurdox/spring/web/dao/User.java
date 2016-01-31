@@ -19,6 +19,8 @@ public class User {
 	@Pattern(regexp = "^\\S+$", message = "Password can not content a gap.")
 	private String password;
 
+	private String confirmPass;
+
 	@ValidEmail(message = "This email address is not valid.")
 	private String email;
 	private boolean enabled;
@@ -27,9 +29,11 @@ public class User {
 	public User() {
 	}
 
-	public User(String username, String password, String email, boolean enabled, String authority) {
+	public User(String username, String password, String confirmPass, String email, boolean enabled, String authority) {
+		super();
 		this.username = username;
 		this.password = password;
+		this.confirmPass = confirmPass;
 		this.email = email;
 		this.enabled = enabled;
 		this.authority = authority;
@@ -49,6 +53,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getConfirmPass() {
+		return confirmPass;
+	}
+
+	public void setConfirmPass(String confirmPass) {
+		this.confirmPass = confirmPass;
 	}
 
 	public String getEmail() {

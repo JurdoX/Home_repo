@@ -5,7 +5,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
@@ -24,13 +23,15 @@
 		<security:intercept-url pattern="/offercreated" access="isAuthenticated()" />
 		<security:intercept-url pattern="/offers" access="permitAll" />
 		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/logout" access="permitAll" />
 		<security:intercept-url pattern="/newaccount" access="permitAll" />
 		<security:intercept-url pattern="/createaccount" access="permitAll" />
 		<security:intercept-url pattern="/accountcreated" access="permitAll" />
 		<security:intercept-url pattern="/static/**" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/offers" access="permitAll" />
-		<security:intercept-url pattern="/**" access="permitAll" />
-		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" />
+		<security:intercept-url pattern="/**" access="denyAll" />
+		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" />		
+		<security:logout logout-success-url="/logout" />		
 	</security:http>
 </beans>

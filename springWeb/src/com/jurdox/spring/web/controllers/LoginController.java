@@ -14,10 +14,10 @@ import com.jurdox.spring.web.services.UserService;
 
 @Controller
 public class LoginController {
-	
+
 	private UserService usersService;
 
-	@Autowired	
+	@Autowired
 	public void setUsersService(UserService usersService) {
 		this.usersService = usersService;
 	}
@@ -26,29 +26,34 @@ public class LoginController {
 	public String showLogin() {
 		return "login";
 	}
-	
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String showLogOut() {
+		return "logout";
+	}
+
 	@RequestMapping("/newaccount")
 	public String showNewAccount(Model model) {
 		model.addAttribute("user", new User());
 		return "newaccount";
 	}
-	
+
 	@RequestMapping(value = "/createaccount", method = RequestMethod.POST)
 	public String doCreate(Model model, @Valid User user, BindingResult result) {
 		if (result.hasErrors()) {
 			return "newaccount";
-		}		
-		
+		}
+
 		user.setAuthority("user");
 		user.setEnabled(true);
-		
+
 		if (usersService.exists(user.getUsername())) {
 			result.rejectValue("username", "DuplicateKey.user.username");
 			return "newaccount";
 		}
-		
+
 		usersService.create(user);
-		
+
 		return "accountcreated";
 	}
 }
