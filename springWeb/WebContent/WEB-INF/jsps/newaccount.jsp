@@ -60,9 +60,9 @@ Create a new account.
 <table class="formtable">
 	<tr><td class="label">Username: </td><td><sf:input class="control" path="username" name="username" type="text"/>
 		<div class="error"><sf:errors path="username" cssClass="error" /></div></td></tr>
-	<tr><td class="label">Password: </td><td><sf:input id="password" class="control" path="password" name="password" type="text"/>
+	<tr><td class="label">Password: </td><td><sf:input id="password" class="control" path="password" name="password" type="password"/>
 		<div class="error"><sf:errors path="password" cssClass="error" /></div></td></tr>
-	<tr><td class="label">Confirm Password: </td><td><sf:input id="confirmPass" class="control" path="confirmPass" name="confirmpass" type="text"/>
+	<tr><td class="label">Confirm Password: </td><td><sf:input id="confirmPass" class="control" path="confirmPass" name="confirmpass" type="password"/>
 		<div id="matchpass"></div>		
 		<div class="error"><sf:errors path="confirmPass" cssClass="error" /></div></td></tr>
 	<tr><td class="label">Email: </td><td><sf:input class="control" path="email" name="email" type="text"/>
