@@ -6,8 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="${pageContext.request.contextPath}/static/css/main.css"
-	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/static/css/main.css"	rel="stylesheet" type="text/css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,7 +21,7 @@
 		</form>
 	</sec:authorize>
 
-	<sec:authorize access="hasAuthority('admin')">
+	<sec:authorize access="hasAuthority('ROLE_ADMIN')">
 		<form action="${pageContext.request.contextPath}/admin" method="post">
 			<input type="submit" value="Admin" />
 			<input type="hidden" name="_csrf" value="${_csrf.token}" />
@@ -34,7 +33,6 @@
 			<input type="submit" value="Log out" />
 			<input type="hidden" name="_csrf" value="${_csrf.token}" />
 		</form>
-	</sec:authorize>	
-	
+	</sec:authorize>		
 </body>
 </html>
